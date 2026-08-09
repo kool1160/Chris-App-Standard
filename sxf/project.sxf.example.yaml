@@ -1,0 +1,44 @@
+# Example only. Do not register this file with SXF until the project is configured.
+# The test command deliberately fails so an untouched template cannot appear ready.
+schemaVersion: "0.1"
+project:
+  name: "REPLACE_ME_APP"
+  description: "Unconfigured app project created from Chris-App-Standard"
+  status: "greenfield"
+  documentationRoot: "docs"
+commands:
+  install: "echo TEMPLATE_NOT_CONFIGURED"
+  lint: "echo TEMPLATE_NOT_CONFIGURED"
+  typecheck: "echo TEMPLATE_NOT_CONFIGURED"
+  test: "echo TEMPLATE_NOT_CONFIGURED && exit 1"
+  integrationTest: "echo TEMPLATE_NOT_CONFIGURED && exit 1"
+  build: "echo TEMPLATE_NOT_CONFIGURED && exit 1"
+autonomy:
+  createIssues: false
+  createBranches: true
+  openPullRequests: true
+  mergeToDefault: false
+  deployToStaging: false
+  deployToProduction: false
+verification:
+  independent: true
+  requireDifferentBackend: false
+  requireDeterministicChecks: true
+  requireUiEvidence: true
+budgets:
+  maxCostUsd: 10
+  maxRuntimeMinutes: 60
+  maxAgentTurns: 40
+  maxRepairCycles: 2
+restrictions:
+  protectedPaths:
+    - "PROJECT_SCOPE.md"
+    - "CURRENT.md"
+    - "OPERATOR_PROTOCOL.md"
+  prohibitedActions:
+    - "production-data-deletion"
+    - "production-deployment"
+    - "secret-exposure"
+    - "billing-modification"
+    - "scope-expansion"
+  allowedNetworkDomains: []
