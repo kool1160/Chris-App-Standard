@@ -1,1 +1,69 @@
-# Chris-App-Standard
+# Chris App Standard
+
+Reusable operating standard for interactive applications.
+
+Use this repository as the starting point for apps that need real user workflows, state, data, APIs, optional AI, responsive UI, or later wrapper/native packaging. If the product is primarily a desktop engineering/system tool, start from `Chris-Software-Standard`. If it is primarily a public website, start from `Chris-Web-Standard`.
+
+## The rule
+
+**Keep the product simple in front and disciplined underneath.**
+
+A new project starts with the problem, user, V1 outcome, scope, non-goals, and proof of success. It does not start by inventing architecture.
+
+## Operating loop
+
+```text
+Owner vision / product decision
+          ↓
+Review-Control Chat locks one active gate
+          ↓
+       CONTINUE
+          ↓
+Codex implements or repairs one bounded pass
+          ↓
+    AWAITING_REVIEW
+          ↓
+Review-Control Chat checks exact head + evidence
+     ↙                 ↘
+CONTINUE            OWNER_DECISION / BLOCKED
+```
+
+The owner should not have to carry technical prompts between chats. GitHub holds scope, findings, evidence, and current state.
+
+## Core guardrails
+
+- One repository, one active gate, one implementation PR.
+- `CURRENT.md` stays short and always shows **IN SCOPE**, **OUT OF SCOPE**, acceptance evidence, and the next valid action.
+- New ideas go to `BACKLOG.md`; they do not become current work by conversation drift.
+- Codex does not choose new scope, merge, advance, or keep working after `AWAITING_REVIEW`.
+- The Review-Control Chat independently reviews the exact pushed head. It may perform routine merge/next-gate advancement only when the work is already inside the locked plan and every required check passes.
+- Product direction, material architecture changes, destructive actions, production deployment, billing, paid services, secrets, external side effects, and unresolved ambiguity escalate to the owner.
+- Evidence beats confidence. Green CI alone is not proof of product correctness.
+- Prefer the smallest complete vertical slice over broad scaffolding.
+
+## Start here
+
+1. Read `START_HERE.md`.
+2. Complete `templates/PROJECT_INTAKE.md`.
+3. Replace the placeholders in `PROJECT_SCOPE.md`.
+4. Put exactly one bounded gate in `CURRENT.md`.
+5. Use `OPERATOR_PROTOCOL.md` for the two-chat loop.
+6. Use `QUALITY_GATES.md` as the minimum acceptance bar.
+
+## Standard files
+
+- `START_HERE.md` — required reading order and first setup
+- `PROJECT_SCOPE.md` — durable product boundary
+- `CURRENT.md` — one active gate, kept directly in front of every agent
+- `OPERATOR_PROTOCOL.md` — Review-Control Chat ↔ Codex workflow
+- `AGENTS.md` — authority and fail-closed rules
+- `QUALITY_GATES.md` — app-specific definition of acceptable work
+- `BACKLOG.md` — idea parking lot; not implementation authority
+- `templates/PROJECT_INTAKE.md` — fast product setup
+- `templates/GATE.md` — bounded milestone/gate template
+- `.github/pull_request_template.md` — scope/evidence handoff
+- `sxf/project.sxf.example.yaml` — safe non-executing SXF 0.1 example for future factory integration
+
+## Status
+
+**V1 operating foundation is ready to use.** Project-specific technology, architecture, services, data stores, AI providers, and deployment choices are intentionally selected during intake rather than hard-coded into this master standard.
