@@ -8,12 +8,14 @@ Follow these sources in order:
 2. `PROJECT_SCOPE.md`
 3. `CURRENT.md`
 4. `OPERATOR_PROTOCOL.md`
-5. `AGENTS.md`
-6. active gate / issue
-7. active PR, exact head, review threads, and CI
-8. `QUALITY_GATES.md`
-9. `BACKLOG.md`
-10. historical notes
+5. `AUDIT_PROCESS.md`
+6. `PLATFORM_STANDARD.md`
+7. `AGENTS.md`
+8. active gate / issue
+9. active PR, exact head, review threads, and CI
+10. `QUALITY_GATES.md`
+11. `BACKLOG.md`
+12. historical notes
 
 A lower source cannot silently override a higher one. Conflict means `BLOCKED`.
 
@@ -30,6 +32,17 @@ A lower source cannot silently override a higher one. Conflict means `BLOCKED`.
 - Block instead of guessing about missing requirements, destructive actions, user data, production state, architecture conflicts, or external services.
 - Tests prove behavior at the layer where the risk exists. A unit test does not prove a packaged/native/browser integration.
 - Builder confidence is not review evidence.
+- **Claude / Anthropic is not used for standard audit, review, fallback, or tie-breaking.** Follow `AUDIT_PROCESS.md`.
+
+## App platform rules
+
+- Default platform is **Vercel + Supabase**.
+- Do not substitute another hosting/backend platform without explicit owner approval and a concrete reason.
+- Never expose Supabase service-role or privileged secrets to client/browser code.
+- Use explicit authorization and appropriate RLS where applicable.
+- Database changes use durable migrations.
+- Preview/test work must not silently modify production data.
+- Production deployment is a controlled action.
 
 ## App-specific product rules
 
