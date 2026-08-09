@@ -36,19 +36,25 @@ Keep this short. The goal is enough truth to start safely, not a giant specifica
 
 ## 4. Data and integrations
 
-**Durable data needed?**  
+**Default hosting:** Vercel  
+**Default backend/data platform:** Supabase  
+**Durable data needed? What belongs in Supabase?**  
 **Accounts/auth needed? Why?**  
-**External APIs/services needed? Why?**  
+**Storage/realtime/server functions needed? Why?**  
+**External APIs/services needed beyond Vercel/Supabase? Why?**  
 **AI needed for V1? What exact job?**  
 **External side effects (send/publish/pay/delete/etc.):**
+
+A deviation from Vercel + Supabase requires a concrete reason and explicit owner approval. Do not add Supabase features merely because they exist.
 
 ## 5. Technical constraints
 
 **Existing repo/code to reuse:**  
 **Required language/framework/runtime, if any:**  
-**Deployment/hosting target, if known:**  
+**Vercel environment/runtime constraints:**  
+**Supabase auth/RLS/data/privacy constraints:**  
 **Budget/paid-service constraints:**  
-**Privacy/security constraints:**
+**Other privacy/security constraints:**
 
 ## 6. Commands
 
