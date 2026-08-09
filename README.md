@@ -10,6 +10,15 @@ Use this repository as the starting point for apps that need real user workflows
 
 A new project starts with the problem, user, V1 outcome, scope, non-goals, and proof of success. It does not start by inventing architecture.
 
+## Default platform
+
+Chris's standard application platform is **Vercel + Supabase**.
+
+- **Vercel** is the default hosting, preview, and deployment surface.
+- **Supabase** is the default backend/data platform for database, auth, storage, realtime, and server-side data services the app actually needs.
+
+Do not re-decide the platform on every app. A different platform requires a concrete product/technical reason and explicit owner approval. See `PLATFORM_STANDARD.md`.
+
 ## Run it in 60 seconds
 
 1. Complete `templates/PROJECT_INTAKE.md` with the owner.
@@ -18,7 +27,7 @@ A new project starts with the problem, user, V1 outcome, scope, non-goals, and p
 4. Start Codex with `templates/CODEX_CHAT.md`.
 5. Review-Control says **`CONTINUE`**.
 6. Codex works one bounded pass and stops **`AWAITING_REVIEW`**.
-7. Review-Control checks the exact head. Repair needed? It records the finding and says **`CONTINUE`** again. Pass? It performs routine advancement inside the already-approved plan and says **`CONTINUE`** for the next gate.
+7. Review-Control audits the exact head using `AUDIT_PROCESS.md`. Repair needed? It records the finding and says **`CONTINUE`** again. Pass? It performs routine advancement inside the already-approved plan and says **`CONTINUE`** for the next gate.
 8. The owner is pulled back in only for real product decisions, exceptions, or controlled/high-risk actions.
 
 ## Operating loop
@@ -34,12 +43,16 @@ Codex implements or repairs one bounded pass
           ↓
     AWAITING_REVIEW
           ↓
-Review-Control Chat checks exact head + evidence
+Review-Control exact-head audit
      ↙                 ↘
 CONTINUE            OWNER_DECISION / BLOCKED
 ```
 
 The owner should not have to carry technical prompts between chats. GitHub holds scope, findings, evidence, and current state.
+
+## Audit rule
+
+Audit is **deterministic checks first, Review-Control exact-head review second**. Claude / Anthropic is not part of the standard audit, review, fallback, or tie-break path. See `AUDIT_PROCESS.md`.
 
 ## Core guardrails
 
@@ -51,6 +64,7 @@ The owner should not have to carry technical prompts between chats. GitHub holds
 - Product direction, material architecture changes, destructive actions, production deployment, billing, paid services, secrets, external side effects, and unresolved ambiguity escalate to the owner.
 - Evidence beats confidence. Green CI alone is not proof of product correctness.
 - Prefer the smallest complete vertical slice over broad scaffolding.
+- Vercel/Supabase integration must preserve secret boundaries, environment separation, migrations, authorization/RLS, and production-data safety.
 
 ## Start here
 
@@ -59,7 +73,7 @@ The owner should not have to carry technical prompts between chats. GitHub holds
 3. Replace the placeholders in `PROJECT_SCOPE.md`.
 4. Put exactly one bounded gate in `CURRENT.md`.
 5. Use `OPERATOR_PROTOCOL.md` for the two-chat loop.
-6. Use `QUALITY_GATES.md` as the minimum acceptance bar.
+6. Use `AUDIT_PROCESS.md` and `QUALITY_GATES.md` as the acceptance bar.
 
 ## Standard files
 
@@ -67,6 +81,8 @@ The owner should not have to carry technical prompts between chats. GitHub holds
 - `PROJECT_SCOPE.md` — durable product boundary
 - `CURRENT.md` — one active gate, kept directly in front of every agent
 - `OPERATOR_PROTOCOL.md` — Review-Control Chat ↔ Codex workflow
+- `AUDIT_PROCESS.md` — exact-head acceptance audit; no Claude audit path
+- `PLATFORM_STANDARD.md` — Vercel + Supabase default platform and guardrails
 - `AGENTS.md` — authority and fail-closed rules
 - `QUALITY_GATES.md` — app-specific definition of acceptable work
 - `BACKLOG.md` — idea parking lot; not implementation authority
@@ -79,4 +95,4 @@ The owner should not have to carry technical prompts between chats. GitHub holds
 
 ## Status
 
-**V1 operating foundation is ready to use.** Project-specific technology, architecture, services, data stores, AI providers, and deployment choices are intentionally selected during intake rather than hard-coded into this master standard.
+**V1 operating foundation is ready to use.** Vercel + Supabase is the default application platform. Project-specific product architecture inside that platform is selected from real requirements rather than speculative complexity.
