@@ -10,6 +10,17 @@ Use this repository as the starting point for apps that need real user workflows
 
 A new project starts with the problem, user, V1 outcome, scope, non-goals, and proof of success. It does not start by inventing architecture.
 
+## Run it in 60 seconds
+
+1. Complete `templates/PROJECT_INTAKE.md` with the owner.
+2. Lock the result into `PROJECT_SCOPE.md` and one active gate in `CURRENT.md`.
+3. Start the planning/review chat with `templates/REVIEW_CONTROL_CHAT.md`.
+4. Start Codex with `templates/CODEX_CHAT.md`.
+5. Review-Control says **`CONTINUE`**.
+6. Codex works one bounded pass and stops **`AWAITING_REVIEW`**.
+7. Review-Control checks the exact head. Repair needed? It records the finding and says **`CONTINUE`** again. Pass? It performs routine advancement inside the already-approved plan and says **`CONTINUE`** for the next gate.
+8. The owner is pulled back in only for real product decisions, exceptions, or controlled/high-risk actions.
+
 ## Operating loop
 
 ```text
@@ -61,6 +72,8 @@ The owner should not have to carry technical prompts between chats. GitHub holds
 - `BACKLOG.md` — idea parking lot; not implementation authority
 - `templates/PROJECT_INTAKE.md` — fast product setup
 - `templates/GATE.md` — bounded milestone/gate template
+- `templates/REVIEW_CONTROL_CHAT.md` — ready-to-use planning/review chat role
+- `templates/CODEX_CHAT.md` — ready-to-use implementation chat role
 - `.github/pull_request_template.md` — scope/evidence handoff
 - `sxf/project.sxf.example.yaml` — safe non-executing SXF 0.1 example for future factory integration
 
