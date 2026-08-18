@@ -28,7 +28,7 @@ Do not re-decide the platform on every app. A different platform requires a conc
 5. Review-Control says **`CONTINUE`**.
 6. Codex works one bounded pass and stops **`AWAITING_REVIEW`**.
 7. Review-Control audits the exact head using `AUDIT_PROCESS.md`. Repair needed? It records the finding and says **`CONTINUE`** again. Pass? It performs routine advancement inside the already-approved plan and says **`CONTINUE`** for the next gate.
-8. The owner is pulled back in only for real product decisions, exceptions, or controlled/high-risk actions.
+8. The owner is pulled back in only for real product decisions, exceptions, controlled/high-risk actions, or an explicitly requested Claude audit circuit breaker.
 
 ## Operating loop
 
@@ -52,7 +52,7 @@ The owner should not have to carry technical prompts between chats. GitHub holds
 
 ## Audit rule
 
-Audit is **deterministic checks first, Review-Control exact-head review second**. Claude / Anthropic is not part of the standard audit, review, fallback, or tie-break path. See `AUDIT_PROCESS.md`.
+Audit is **deterministic checks first, Review-Control exact-head review second**. Claude / Anthropic is not a required audit, routine fallback, or automatic tie-breaker. Only the owner may explicitly invoke a one-off Claude audit to break a stalled or repeatedly stacking review/repair loop. Claude's report is advisory evidence; it does not merge, advance, redefine scope, or override deterministic failures. See `AUDIT_PROCESS.md`.
 
 ## Core guardrails
 
@@ -80,8 +80,8 @@ Audit is **deterministic checks first, Review-Control exact-head review second**
 - `START_HERE.md` — required reading order and first setup
 - `PROJECT_SCOPE.md` — durable product boundary
 - `CURRENT.md` — one active gate, kept directly in front of every agent
-- `OPERATOR_PROTOCOL.md` — Review-Control Chat ↔ Codex workflow
-- `AUDIT_PROCESS.md` — exact-head acceptance audit; no Claude audit path
+- `OPERATOR_PROTOCOL.md` — Review-Control Chat ↔ Codex workflow and owner-triggered Claude circuit breaker
+- `AUDIT_PROCESS.md` — exact-head acceptance audit; Claude only by explicit owner request
 - `PLATFORM_STANDARD.md` — Vercel + Supabase default platform and guardrails
 - `AGENTS.md` — authority and fail-closed rules
 - `QUALITY_GATES.md` — app-specific definition of acceptable work
