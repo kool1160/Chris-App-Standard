@@ -110,6 +110,32 @@ Read repository truth first, then follow this order:
 5. If the project/gate is complete, return `COMPLETE`.
 6. If advancement would require a new product decision, material architecture change, destructive action, production deployment, billing/paid service, secret handling change, external side effect, or meaningful scope change, return `OWNER_DECISION` instead of guessing.
 
+## Owner-triggered Claude audit circuit breaker
+
+Claude is **not** part of the normal two-chat loop. It is never required for a PR, gate, milestone, merge, or tie-break.
+
+Only the owner may trigger it, with an explicit instruction such as:
+
+```text
+CLAUDE AUDIT
+```
+
+or an unmistakable equivalent such as “Claude audit this PR right now.”
+
+This is intended as a circuit breaker when the normal Review-Control ↔ Codex loop has become unproductive—for example, repeated repair passes keep stacking findings, the same defect is not being resolved, or the owner wants an independent second look before spending more time on the loop. There is no automatic threshold and Review-Control may not invoke Claude on its own.
+
+When triggered:
+
+1. Freeze the scope at the current gate and exact PR head being audited.
+2. Give Claude the relevant GitHub truth, complete diff, deterministic evidence, review findings, and unresolved threads.
+3. Ask for an independent audit/finding report, not implementation authority.
+4. Treat Claude findings as advisory until reproduced or otherwise substantiated where practical.
+5. Record actionable blocking findings on GitHub.
+6. Claude does not merge, advance, redefine scope, waive failing evidence, or grant production/destructive authority.
+7. Resume the normal Review-Control ↔ Codex loop after the one-off audit is incorporated.
+
+The owner can use this whenever the normal loop is pissing them off or no longer earning confidence; the template must never force it when the owner did not ask for it.
+
 ## Scope-drift firewall
 
 - New idea discovered during implementation → `BACKLOG.md`.
