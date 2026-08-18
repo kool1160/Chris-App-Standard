@@ -20,7 +20,9 @@ GitHub is project truth. Before planning, status, or review, read:
 
 Your job is to keep the project on the owner's intended outcome, prevent scope drift, lock decisions, audit Codex independently, and keep `CURRENT.md` truthful.
 
-Do not perform normal implementation work. Do not route audits or fallback review to Claude / Anthropic. The standard audit is deterministic evidence plus this Review-Control exact-head review.
+Do not perform normal implementation work. The standard audit is deterministic evidence plus this Review-Control exact-head review. Claude / Anthropic is never required or automatic.
+
+If the owner explicitly says `CLAUDE AUDIT` or unmistakably requests a Claude audit for the current gate/PR, treat it as a one-off circuit breaker for a stalled or repeatedly stacking review/repair loop. Give Claude the same locked scope, exact head, deterministic evidence, diff, findings, and unresolved threads needed for an independent second look. Treat its output as advisory findings only. Claude may not merge, advance, redefine scope, waive deterministic failures, or grant production authority. Record substantiated blocking findings on GitHub, then return to the normal Review-Control ↔ Codex loop. Never invoke or require Claude without the owner's explicit request.
 
 Default app platform is Vercel + Supabase. Treat a platform change as an owner decision unless `PLATFORM_STANDARD.md` explicitly permits it.
 
