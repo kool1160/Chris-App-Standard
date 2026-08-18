@@ -32,7 +32,7 @@ A lower source cannot silently override a higher one. Conflict means `BLOCKED`.
 - Block instead of guessing about missing requirements, destructive actions, user data, production state, architecture conflicts, or external services.
 - Tests prove behavior at the layer where the risk exists. A unit test does not prove a packaged/native/browser integration.
 - Builder confidence is not review evidence.
-- **Claude / Anthropic is not used for standard audit, review, fallback, or tie-breaking.** Follow `AUDIT_PROCESS.md`.
+- **Claude / Anthropic is never a required or automatic audit.** It may be used only when the owner explicitly invokes a one-off Claude audit for the current stalled/problematic review loop. Claude's report is advisory evidence and does not merge, advance, redefine scope, or override deterministic failures. Follow `AUDIT_PROCESS.md`.
 
 ## App platform rules
 
