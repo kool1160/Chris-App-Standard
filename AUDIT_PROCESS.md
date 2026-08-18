@@ -2,9 +2,11 @@
 
 ## Audit authority
 
-**The Review-Control Chat is the acceptance auditor. Codex is the builder and may not approve its own work.**
+**The Review-Control Chat is the default acceptance auditor. Codex is the builder and may not approve its own work.**
 
-Claude / Anthropic is **not** part of the standard audit, review, fallback, or tie-break process. Do not route a project to Claude for an audit. If additional model review is ever desired, use an explicitly approved OpenAI review path; deterministic evidence remains primary.
+Claude / Anthropic is **not** a required audit, routine fallback, automatic tie-breaker, or milestone gate. Do not invoke Claude merely because a PR exists, a gate is important, or a second model would be nice to have.
+
+The owner may explicitly invoke a one-off **Claude audit** as a circuit breaker when the normal Review-Control ↔ Codex repair loop is stalled, repeatedly stacking findings/repairs, or otherwise no longer earning confidence. That exception exists only when the owner directly requests it for the current work.
 
 ## Audit order
 
@@ -71,6 +73,21 @@ Screenshots or packaged/browser evidence are required when the risk cannot be pr
 
 Review the complete diff and acceptance criteria against the exact SHA. Check regression risk, data/security boundaries, UX truth, and whether the gate outcome is actually proven.
 
+## Owner-triggered Claude audit circuit breaker
+
+Claude is available only by explicit owner instruction such as `CLAUDE AUDIT` or an unmistakable equivalent directed at the current gate/PR.
+
+When invoked:
+
+1. Audit the same exact pushed head and the same locked scope; do not widen the task.
+2. Give Claude the repository truth, active acceptance criteria, complete diff, deterministic evidence, existing review findings, and unresolved threads needed to inspect the problem independently.
+3. Treat Claude's output as an **independent finding report**, not acceptance authority.
+4. Reproduce or otherwise substantiate actionable findings where practical and record blocking findings on GitHub.
+5. Claude may not merge, advance, redefine scope, waive deterministic failures, or grant production/destructive authority.
+6. After the one-off audit is incorporated, return to the normal Review-Control ↔ Codex exact-head loop.
+
+Review-Control may tell the owner that an external second-look could be useful, but it may **not invoke or require Claude on its own**.
+
 ## Verdicts
 
 Return exactly one:
@@ -99,4 +116,4 @@ A changed head invalidates the prior audit. Re-audit the new exact head.
 
 ## Principle
 
-**Deterministic evidence first. Independent Review-Control judgment second. No Claude audit.**
+**Deterministic evidence first. Review-Control is the default independent auditor. Claude is an owner-triggered circuit breaker only, never a required audit.**
